@@ -1,15 +1,21 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/admin/create">Crear producto</a>
-      <a mat-list-item routerLink="/admin">Home</a>
-      <a mat-list-item routerLink="/admin/table">Inventario</a>
-      <a mat-list-item routerLink="/admin/products">Productos</a>
-      <button mat-list-item (click)="logout()">cerrar</button>
+      <a mat-list-item routerLink="/admin">
+        <mat-icon>bubble_chart</mat-icon> Dashboard</a
+      >
+      <a mat-list-item routerLink="/admin/products"><mat-icon>store</mat-icon> Productos</a>
+      <a mat-list-item routerLink="/admin/categories">
+        <mat-icon>category</mat-icon> Categoría</a>
+      <button mat-list-item (click)="logout()"> <mat-icon>login</mat-icon> Cerrar</button>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -19,7 +25,8 @@
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
+        *ngIf="isHandset$ | async"
+      >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>platzi-store</span>

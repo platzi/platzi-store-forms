@@ -2,11 +2,11 @@
 <table mat-table [dataSource]="products" class="mat-elevation-z8 products-table">
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> ID </th>
-    <td mat-cell *matCellDef="let product"> {{product.id}} </td>
+    <td mat-cell *matCellDef="let product"> {{product._id}} </td>
   </ng-container>
-  <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef> Title </th>
-    <td mat-cell *matCellDef="let product"> {{product.title}} </td>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let product"> {{product.name}} </td>
   </ng-container>
   <ng-container matColumnDef="price">
     <th mat-header-cell *matHeaderCellDef> Price </th>
@@ -14,9 +14,9 @@
   </ng-container>
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef> Actions </th>
-    <td mat-cell *matCellDef="let product"> 
-      <a mat-raised-button [routerLink]="['edit', product.id]">Editar</a>
-      <button mat-raised-button color="warn" (click)="deleteProduct(product.id)">Eliminar</button>
+    <td mat-cell *matCellDef="let product">
+      <a mat-raised-button [routerLink]="['edit', product._id]">Editar</a>
+      <button mat-raised-button color="warn" (click)="deleteProduct(product._id)">Eliminar</button>
     </td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
