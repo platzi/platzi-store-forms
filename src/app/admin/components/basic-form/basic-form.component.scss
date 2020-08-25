@@ -1,0 +1,15 @@
+input {
+  &.is-valid {
+    border: 2px solid green;
+  }
+  &.is-invalid {
+    border: 2px solid red;
+  }
+}
+.messages {
+  opacity: 0;
+  transition: all .5s ease-in;
+  &.active {
+    opacity: 1;
+  }
+}
