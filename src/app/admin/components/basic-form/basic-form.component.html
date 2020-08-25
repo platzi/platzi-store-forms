@@ -32,6 +32,12 @@
     <input type="tel" formControlName="phone"/>
   </p>
 
+  <div class="messages" [class.active]="phoneField.touched && phoneField.invalid">
+    <p>
+      <strong *ngIf="phoneField.touched && phoneField.hasError('required')">Este campo es requerido</strong>
+    </p>
+  </div>
+
   <p>
     Color: {{ colorField.value }}
     <input type="color" formControlName="color"/>
