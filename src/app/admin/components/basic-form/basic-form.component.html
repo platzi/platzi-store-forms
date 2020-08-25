@@ -1,0 +1,33 @@
+<p>
+  Name: {{ nameField.value }}
+  <input type="text" [formControl]="nameField"/>
+  <button (click)="getNameValue()">Get value</button>
+  <!-- <code>
+    <pre>{{ nameField | json }}</pre>
+  </code> -->
+</p>
+
+<p>
+  Email: {{ emailField.value }}
+  <input type="email" [formControl]="emailField"/>
+</p>
+
+<p>
+  Phone: {{ phoneField.value }}
+  <input type="tel" [formControl]="phoneField"/>
+</p>
+
+<p>
+  Color: {{ colorField.value }}
+  <input type="color" [formControl]="colorField"/>
+</p>
+
+<p>
+  Date: {{ dateField.value }}
+  <input type="date" [formControl]="dateField"/>
+</p>
+
+<p>
+  Phone: {{ ageField.value }}
+  <input type="number" [formControl]="ageField"/>
+</p>
