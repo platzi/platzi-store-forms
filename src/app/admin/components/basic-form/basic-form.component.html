@@ -1,29 +1,39 @@
 <form [formGroup]="form" (ngSubmit)="save($event)">
-  <p>
-    Name: {{ nameField.value }} {{ nameField.valid }}
-    <input
-      [class.is-valid]="isNameFieldValid"
-      [class.is-invalid]="isNameFieldInvalid"
-      type="text"
-      formControlName="name"/>
-    <button [disabled]="nameField.invalid" (click)="getNameValue()">Get value</button>
-    <!-- <code>
-      <pre>{{ nameField | json }}</pre>
-    </code> -->
-  </p>
-  <div class="messages" [class.active]="isNameFieldInvalid">
+  <div formGroupName="fullName">
     <p>
-      <strong *ngIf="nameField.hasError('required')">Este campo es requerido</strong>
+      Name: {{ nameField.value }} {{ nameField.valid }}
+      <input
+        [class.is-valid]="isNameFieldValid"
+        [class.is-invalid]="isNameFieldInvalid"
+        type="text"
+        formControlName="name"/>
+      <button [disabled]="nameField.invalid" (click)="getNameValue()">Get value</button>
+      <!-- <code>
+        <pre>{{ nameField | json }}</pre>
+      </code> -->
     </p>
+    <div class="messages" [class.active]="isNameFieldInvalid">
+      <p>
+        <strong *ngIf="nameField.hasError('required')">Este campo es requerido</strong>
+      </p>
+
+      <p>
+        <strong *ngIf="nameField.hasError('maxlength')">debe tener maximo 10 c</strong>
+      </p>
+
+      <p>
+        <strong *ngIf="nameField.hasError('pattern')">No debe tener carac..</strong>
+      </p>
+    </div>
 
     <p>
-      <strong *ngIf="nameField.hasError('maxlength')">debe tener maximo 10 c</strong>
-    </p>
-
-    <p>
-      <strong *ngIf="nameField.hasError('pattern')">No debe tener carac..</strong>
+      Last Name: {{ lastField.value }} {{ lastField.valid }}
+      <input
+        type="text"
+        formControlName="last"/>
     </p>
   </div>
+
 
   <p>
     Email: {{ emailField.value }}
