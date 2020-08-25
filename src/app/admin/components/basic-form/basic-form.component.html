@@ -1,105 +1,117 @@
-<p>
-  Name: {{ nameField.value }} {{ nameField.valid }}
-  <input
-    [class.is-valid]="isNameFieldValid"
-    [class.is-invalid]="isNameFieldInvalid"
-    type="text"
-    [formControl]="nameField"/>
-  <button [disabled]="nameField.invalid" (click)="getNameValue()">Get value</button>
-  <!-- <code>
-    <pre>{{ nameField | json }}</pre>
-  </code> -->
-</p>
-
-<div class="messages" [class.active]="isNameFieldInvalid">
+<form [formGroup]="form" (ngSubmit)="save($event)">
   <p>
-    <strong *ngIf="nameField.touched && nameField.hasError('required')">Este campo es requerido</strong>
+    Name: {{ nameField.value }} {{ nameField.valid }}
+    <input
+      [class.is-valid]="isNameFieldValid"
+      [class.is-invalid]="isNameFieldInvalid"
+      type="text"
+      formControlName="name"/>
+    <button [disabled]="nameField.invalid" (click)="getNameValue()">Get value</button>
+    <!-- <code>
+      <pre>{{ nameField | json }}</pre>
+    </code> -->
+  </p>
+  <div class="messages" [class.active]="isNameFieldInvalid">
+    <p>
+      <strong *ngIf="nameField.touched && nameField.hasError('required')">Este campo es requerido</strong>
+    </p>
+
+    <p>
+      <strong *ngIf="nameField.touched && nameField.hasError('maxlength')">debe tener maximo 10 c</strong>
+    </p>
+  </div>
+
+  <p>
+    Email: {{ emailField.value }}
+    <input type="email" formControlName="email"/>
+  </p>
+
+
+  <p>
+    Phone: {{ phoneField.value }}
+    <input type="tel" formControlName="phone"/>
   </p>
 
   <p>
-    <strong *ngIf="nameField.touched && nameField.hasError('maxlength')">debe tener maximo 10 c</strong>
+    Color: {{ colorField.value }}
+    <input type="color" formControlName="color"/>
   </p>
-</div>
 
-<p>
-  Email: {{ emailField.value }}
-  <input type="email" [formControl]="emailField"/>
-</p>
+  <p>
+    Date: {{ dateField.value }}
+    <input type="date" formControlName="date"/>
+  </p>
 
-<p>
-  Phone: {{ phoneField.value }}
-  <input type="tel" [formControl]="phoneField"/>
-</p>
+  <p>
+    Phone: {{ ageField.value }}
+    <input type="number" formControlName="age"/>
+  </p>
 
-<p>
-  Color: {{ colorField.value }}
-  <input type="color" [formControl]="colorField"/>
-</p>
+  <p>
+    Category: {{ categoryField.value }}
+    <select formControlName="category">
+      <option value="category-1">Category 1</option>
+      <option value="category-2">Category 2</option>
+      <option value="category-3">Category 3</option>
+      <option value="category-4">Category 4</option>
+    </select>
+  </p>
 
-<p>
-  Date: {{ dateField.value }}
-  <input type="date" [formControl]="dateField"/>
-</p>
+  <p>
+    Tags: {{ tagField.value }}
+    <select formControlName="tag" multiple>
+      <option value="tag-1">Tag 1</option>
+      <option value="tag-2">Tag 2</option>
+      <option value="tag-3">Tag 3</option>
+      <option value="tag-4">Tag 4</option>
+    </select>
+  </p>
 
-<p>
-  Phone: {{ ageField.value }}
-  <input type="number" [formControl]="ageField"/>
-</p>
-
-<p>
-  Category: {{ categoryField.value }}
-  <select [formControl]="categoryField">
-    <option value="category-1">Category 1</option>
-    <option value="category-2">Category 2</option>
-    <option value="category-3">Category 3</option>
-    <option value="category-4">Category 4</option>
-  </select>
-</p>
-
-<p>
-  Tags: {{ tagField.value }}
-  <select [formControl]="tagField" multiple>
-    <option value="tag-1">Tag 1</option>
-    <option value="tag-2">Tag 2</option>
-    <option value="tag-3">Tag 3</option>
-    <option value="tag-4">Tag 4</option>
-  </select>
-</p>
-
-<p>
-  Agree: {{ agreeField.value }}
-  <input type="checkbox" [formControl]="agreeField"/>
-</p>
+  <p>
+    Agree: {{ agreeField.value }}
+    <input type="checkbox" formControlName="agree"/>
+  </p>
 
 
-<p>
-  Gender: {{ genderField.value }}
-  <label>
-    <input name="gender" value="male" type="radio" [formControl]="genderField"/>
-    Male
-  </label>
-  <label>
-    <input name="gender" value="female" type="radio" [formControl]="genderField"/>
-    Female
-  </label>
-  <label>
-    <input name="gender" value="other" type="radio" [formControl]="genderField"/>
-    Other
-  </label>
-</p>
+  <p>
+    Gender: {{ genderField.value }}
+    <label>
+      <input name="gender" value="male" type="radio" formControlName="gender"/>
+      Male
+    </label>
+    <label>
+      <input name="gender" value="female" type="radio" formControlName="gender"/>
+      Female
+    </label>
+    <label>
+      <input name="gender" value="other" type="radio" formControlName="gender"/>
+      Other
+    </label>
+  </p>
 
-<p>
-  Zone: {{ zoneField.value }}
-  <label>
-    <input name="zone" value="zone-1" type="radio" [formControl]="zoneField"/>
-    Zona 1
-  </label>
-  <label>
-    <input name="zone" value="zone-2" type="radio" [formControl]="zoneField"/>
-    Zona 2
-  </label>
-  <label>
-    <input name="zone" value="zone-3" type="radio" [formControl]="zoneField"/>
-    Zona 3
-  </label>
-</p>
+  <p>
+    Zone: {{ zoneField.value }}
+    <label>
+      <input name="zone" value="zone-1" type="radio" formControlName="zone"/>
+      Zona 1
+    </label>
+    <label>
+      <input name="zone" value="zone-2" type="radio" formControlName="zone"/>
+      Zona 2
+    </label>
+    <label>
+      <input name="zone" value="zone-3" type="radio" formControlName="zone"/>
+      Zona 3
+    </label>
+  </p>
+
+  <p>
+    <button type="submit">Enviar</button>
+  </p>
+</form>
+
+
+
+
+
+
