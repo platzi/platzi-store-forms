@@ -15,6 +15,9 @@ export class BasicFormComponent implements OnInit {
   dateField = new FormControl('');
   ageField = new FormControl(12);
 
+  categoryField = new FormControl('');
+  tagField = new FormControl('');
+
   constructor() { }
 
   ngOnInit(): void {
