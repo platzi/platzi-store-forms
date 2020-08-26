@@ -19,15 +19,13 @@
         </div>
         <div class="row">
           <div class="col-xs">
-            <mat-form-field>
-              <mat-label>Image</mat-label>
-              <input placeholder="Image" formControlName="image" matInput type="text">
-              <div class="messages" *ngIf="imageField.touched && imageField.invalid">
-                <mat-error *ngIf="imageField.hasError('required')">
-                  Este campo es requerido
-                </mat-error>
-              </div>
-            </mat-form-field>
+            <img *ngIf="(image$ | async) as image" [src]="image" />
+            <input type="file" (change)="uploadFile($event)">
+            <div class="messages" *ngIf="imageField.touched && imageField.invalid">
+              <mat-error *ngIf="imageField.hasError('required')">
+                Este campo es requerido
+              </mat-error>
+            </div>
           </div>
         </div>
     </mat-card-content>
