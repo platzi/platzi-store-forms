@@ -7,7 +7,7 @@
         <div class="row">
           <div class="col-xs">
             <mat-form-field>
-              <input placeholder="Title" formControlName="title" matInput type="text">
+              <input placeholder="Title" formControlName="name" matInput type="text">
             </mat-form-field>
           </div>
         </div>
@@ -29,11 +29,44 @@
             </mat-form-field>
           </div>
         </div>
+        <div class="row">
+          <div class="col-xs">
+            <mat-form-field>
+              <mat-label>Categories</mat-label>
+              <mat-select formControlName="category_id">
+                <mat-option [value]="category._id" *ngFor="let category of categories">
+                  {{ category.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs">
+            <mat-form-field>
+              <mat-label>States</mat-label>
+              <mat-select formControlName="state">
+                <mat-option [value]="state" *ngFor="let state of states">
+                  {{ state.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs">
+            <select formControlName="state">
+              <option [ngValue]="state" *ngFor="let state of states">
+                {{ state.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+
       </mat-card-content>
       <mat-card-actions>
         <button [disabled]="form.invalid" mat-raised-button type="submit">Guardar</button>
       </mat-card-actions>
     </mat-card>
-    
+
   </form>
-  
