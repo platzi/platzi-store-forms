@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
@@ -17,17 +17,25 @@ export class CategoryFormComponent implements OnInit {
 
   form: FormGroup;
   image$: Observable<string>;
+  categoryId: string;
 
   constructor(
     private formBuilder: FormBuilder,
     private categoriesService: CategoriesService,
     private router: Router,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private route: ActivatedRoute
   ) {
     this.buildForm();
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe((params: Params) => {
+      this.categoryId = params.id;
+      if (this.categoryId) {
+        this.getCategory();
+      }
+    });
   }
 
   private buildForm() {
@@ -47,7 +55,11 @@ export class CategoryFormComponent implements OnInit {
 
   save() {
     if (this.form.valid) {
-      this.createCategory();
+      if (this.categoryId) {
+        this.updateCategory();
+      } else {
+        this.createCategory();
+      }
     } else {
       this.form.markAllAsTouched();
     }
@@ -58,6 +70,21 @@ export class CategoryFormComponent implements OnInit {
     this.categoriesService.createCategory(data)
     .subscribe(rta => {
       this.router.navigate(['/admin/categories']);
+    });
+  }
+
+  private updateCategory() {
+    const data = this.form.value;
+    this.categoriesService.updateCategory(this.categoryId, data)
+    .subscribe(rta => {
+      this.router.navigate(['/admin/categories']);
+    });
+  }
+
+  private getCategory() {
+    this.categoriesService.getCategory(this.categoryId)
+    .subscribe(data => {
+      this.form.patchValue(data);
     });
   }
 
