@@ -12,7 +12,7 @@ import { Category } from './../../../../core/models/category.model';
 export class CategoriesComponent implements OnInit {
 
   categories: Category[] = [];
-  displayedColumns: string[] = ['id', 'name', 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'image', 'actions'];
 
   constructor(
     private categoriesService: CategoriesService,

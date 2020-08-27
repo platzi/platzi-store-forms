@@ -1,6 +1,10 @@
-form{
+:host{
   width: 96%;
   margin: 2%;
+  display: block;
+}
+
+form{
   mat-form-field {
     width: 100%;
   }

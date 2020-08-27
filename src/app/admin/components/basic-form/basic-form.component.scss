@@ -1,3 +1,9 @@
+:host{
+  width: 96%;
+  margin: 2%;
+  display: block;
+}
+
 input {
   &.is-valid {
     border: 2px solid green;
