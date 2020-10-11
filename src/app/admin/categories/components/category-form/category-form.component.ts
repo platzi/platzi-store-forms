@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 import { CategoriesService } from './../../../../core/services/categories.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-category-form',
@@ -69,8 +70,8 @@ export class CategoryFormComponent implements OnInit {
     task.snapshotChanges()
     .pipe(
       finalize(() => {
-        this.image$ = ref.getDownloadURL();
-        this.image$.subscribe(url => {
+        const urlImage$ = ref.getDownloadURL();
+        urlImage$.subscribe(url => {
           console.log(url);
           this.imageField.setValue(url);
         });
